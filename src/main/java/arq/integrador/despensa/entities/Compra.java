@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,6 +32,7 @@ public class Compra {
 	private int idCompra;
 	@ManyToOne
 	@JoinColumn(name="idCliente")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Cliente cliente;
 	//		private List<Producto> compras;
 
@@ -65,10 +68,7 @@ public class Compra {
 		return fecha;
 	}
 
-	//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	//	protected Date onCreate() { 
-	//		return new Date(); 
-	//	}
+
 
 
 

@@ -19,7 +19,7 @@ import arq.integrador.despensa.entities.Producto;
 import arq.integrador.despensa.services.ProductoService;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin
 @RequestMapping("/producto")
 public class ProductoController {
 

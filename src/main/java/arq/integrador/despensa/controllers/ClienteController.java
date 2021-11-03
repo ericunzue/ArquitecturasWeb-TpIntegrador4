@@ -22,7 +22,7 @@ import arq.integrador.despensa.services.ClienteService;
 
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin
 @RequestMapping("/cliente")
 public class ClienteController {
 

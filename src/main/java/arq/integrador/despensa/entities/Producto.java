@@ -13,13 +13,15 @@ public class Producto {
 	private int idProducto;
 	
 	private String nombre;
-	private int stock;
 	private double precio;
+	private int stock;
+	
 	public Producto(String nombre, int stock, double precio) {
 		super();
 		this.nombre = nombre;
-		this.stock = stock;
 		this.precio = precio;
+		this.stock = stock;
+		
 	}
 	
 	public Producto() {
