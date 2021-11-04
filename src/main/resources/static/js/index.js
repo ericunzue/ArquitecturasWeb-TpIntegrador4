@@ -27,7 +27,7 @@ const cargarClientes = async () => {
 
   for (const cliente of clientes) {
     let { idCliente, nombre_apellido, direccion } = cliente;
-    console.log(idCliente);
+
 
     container.innerHTML += `<tr class=" value="">
     
@@ -48,8 +48,7 @@ const eliminarCliente = (e) => {
   let btnEliminarCliente = document.querySelectorAll(".eliminarCliente");
   btnEliminarCliente.forEach(element => {
     element.addEventListener("click", () => {
-      console.log(element.value);
-      console.log(element);
+
     })
   });
 }
@@ -62,7 +61,7 @@ const addEventEditarCliente = (e) => {
     element.addEventListener("click", (e) => {
       e.preventDefault()
       let id = element.value;
-      console.log(id);
+
 
       getCliente(id);
 
@@ -71,9 +70,9 @@ const addEventEditarCliente = (e) => {
 }
 
 const getCliente = async (id) => {
-  console.log(id);
+
   let cliente = await clienteRepository.getById(baseUrl, id);
-  console.log(cliente);
+
 
   let { idCliente, nombre_apellido, direccion } = cliente;
   let clienteNombre = document.getElementById("clienteNombre");
@@ -92,17 +91,18 @@ const addCliente = () => {
   btnEnviarCliente.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let id = document.getElementById("clienteId").value;
-    console.log(id);
+
 
     let cliente = {
       nombre_apellido: document.getElementById("clienteNombre").value,
-      direccion: document.getElementById("clienteDireccion").value
+      direccion: document.getElementById("clienteDireccion").value,
+      idCliente: document.getElementById("clienteId").value
+
     }
 
 
-    if (id === undefined) {
-      console.log(cliente);
+    if (typeof cliente.idCliente.value === "undefined") {
+
       clienteRepository.addCliente(baseUrl, cliente);
 
     } else {
@@ -126,7 +126,7 @@ const cargarProductos = async () => {
 
   for (const producto of productos) {
     let { idProducto, nombre, precio, stock } = producto;
-    console.log(idProducto);
+
 
     container.innerHTML += `<tr class=" value="">
 
@@ -148,16 +148,17 @@ const addProducto = () => {
   btnEnviarProducto.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let id = document.getElementById("productoId").value;
 
     let producto = {
       nombre: document.getElementById("productoNombre").value,
       precio: document.getElementById("productoPrecio").value,
-      stock: document.getElementById("productoStock").value
+      stock: document.getElementById("productoStock").value,
+      idProducto: document.getElementById("productoId").value
+
     }
-    console.log(id.value);
-    if (typeof id === "undefined") {
-      console.log(producto);
+
+    if (typeof producto.idProducto.value === "undefined") {
+
       productoRepository.addProducto(baseUrl, producto);
 
     } else {
@@ -175,7 +176,6 @@ const addEventEditarProducto = (e) => {
     element.addEventListener("click", (e) => {
       e.preventDefault()
       let id = element.value;
-      console.log(element.value);
       getProducto(id);
 
     })
