@@ -37,8 +37,10 @@ public class ClienteService {
 
 		public boolean update(int id ,Cliente clienteModificado) {
 				Cliente cliente = this.clientes.getById(id);
+				System.out.println(cliente);
 				cliente.setNombre_apellido(clienteModificado.getNombre_apellido());
 				cliente.setDireccion(clienteModificado.getDireccion());
+				System.out.println(cliente);
 
 				return this.clientes.save(cliente)!=null;
 

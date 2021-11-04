@@ -45,5 +45,11 @@ public class Cliente {
 				return idCliente;
 		}
 
+		@Override
+		public String toString() {
+			return "Cliente [idCliente=" + idCliente + ", nombre_apellido=" + nombre_apellido + ", direccion="
+					+ direccion + "]";
+		}
+
 
 }

@@ -27,7 +27,7 @@ const cargarClientes = async () => {
 
   for (const cliente of clientes) {
     let { idCliente, nombre_apellido, direccion } = cliente;
-
+    console.log(idCliente);
 
     container.innerHTML += `<tr class=" value="">
     
@@ -54,7 +54,7 @@ const eliminarCliente = (e) => {
   });
 }
 
-const addEventEditarCliente = async (e) => {
+const addEventEditarCliente = (e) => {
 
   let btnEditarCliente = document.querySelectorAll(".editarCliente");
 
@@ -62,6 +62,7 @@ const addEventEditarCliente = async (e) => {
     element.addEventListener("click", (e) => {
       e.preventDefault()
       let id = element.value;
+      console.log(id);
 
       getCliente(id);
 
@@ -70,7 +71,9 @@ const addEventEditarCliente = async (e) => {
 }
 
 const getCliente = async (id) => {
+  console.log(id);
   let cliente = await clienteRepository.getById(baseUrl, id);
+  console.log(cliente);
 
   let { idCliente, nombre_apellido, direccion } = cliente;
   let clienteNombre = document.getElementById("clienteNombre");
@@ -90,13 +93,15 @@ const addCliente = () => {
     e.preventDefault();
 
     let id = document.getElementById("clienteId").value;
+    console.log(id);
 
     let cliente = {
       nombre_apellido: document.getElementById("clienteNombre").value,
       direccion: document.getElementById("clienteDireccion").value
     }
-    console.log(id.value);
-    if (typeof id.value === "undefined") {
+
+
+    if (id === undefined) {
       console.log(cliente);
       clienteRepository.addCliente(baseUrl, cliente);
 
@@ -129,7 +134,7 @@ const cargarProductos = async () => {
                 <td>${precio}</td>
                 <td>${stock}</td>
                 <td><button type="submit" class="btn btn-primary editarProducto" value="${idProducto}" >Editar</button</td>
-                <td><button type="submit" class="btn btn-danger eliminarCliente " value="${idProducto}" >Eliminar</button</td>
+                <td><button type="submit" class="btn btn-danger eliminarProducto " value="${idProducto}" >Eliminar</button</td>
                 </tr>`;
   }
   // eliminarCliente();
@@ -151,7 +156,7 @@ const addProducto = () => {
       stock: document.getElementById("productoStock").value
     }
     console.log(id.value);
-    if (typeof id.value === "undefined") {
+    if (typeof id === "undefined") {
       console.log(producto);
       productoRepository.addProducto(baseUrl, producto);
 

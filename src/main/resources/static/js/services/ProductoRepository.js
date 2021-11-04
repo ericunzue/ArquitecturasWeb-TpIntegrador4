@@ -49,13 +49,29 @@ const ProductoRepository = () => {
       console.log(error);
     }
   }
+  const updateProducto = async (baseUrl, id, producto) => {
+    try {
+      let response = await fetch(baseUrl + 'producto/' + id, {
 
+        method: "PUT",
+        headers: {
+          "Accept": "application/json",
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(producto)
+      });
+      let responseJson = await response.json();
+      console.log(responseJson);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   return {
     getAll: getAll,
     getById: getById,
-    // updateProducto: updateProducto,
+    updateProducto: updateProducto,
     addProducto: addProducto,
   }
 }

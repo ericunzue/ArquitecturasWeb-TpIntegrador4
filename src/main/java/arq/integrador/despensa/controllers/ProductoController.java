@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import arq.integrador.despensa.entities.Cliente;
 import arq.integrador.despensa.entities.Producto;
 import arq.integrador.despensa.services.ProductoService;
 
@@ -52,5 +53,13 @@ public class ProductoController {
 			return this.servicioProducto.getProductos();
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<Producto> update(@PathVariable("id") int id,@RequestBody Producto producto) {
+			boolean ok = this.servicioProducto.update(id,producto);
+			if (!ok) {
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+	}
 	
 }
