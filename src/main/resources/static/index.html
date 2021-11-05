@@ -93,6 +93,86 @@
 					</div>
 				</div>
 			</section>
+			<section class="border-top border-primary">
+				<div class="row mt-3  justify-content:center">
+					<h2>Servicio Venta</h2>
+
+					<div class="col-2 ml-auto">
+						<h3>Seleccionar Cliente</h3>
+						<div>
+							<select class="form-select" id="clienteVenta" aria-label="Default select example">
+								<option selected>Clientes</option>
+							</select>
+
+						</div>
+
+					</div>
+					<div class="col-8 overflow-auto text-center" style="max-height: 300px">
+						<table class="table table-hover" id="productosVenta">
+							<thead>
+								<tr>
+									<th scope="col">Producto</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Stock</th>
+									<th scope="col">Agregar</th>
+								</tr>
+							</thead>
+							<tbody id="listaProductosVenta">
+
+							</tbody>
+						</table>
+					</div>
+					<div class="col-2">
+						<h3>Producto Seleccionado</h3>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="productoSeleccionadoNombre" placeholder="Producto" aria-label="Username"
+								aria-describedby="basic-addon1" />
+						</div>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="productoSeleccionadoPrecio" placeholder="Precio" aria-label="Username"
+								aria-describedby="basic-addon1" />
+						</div>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="productoSeleccionadoCantidad" placeholder="Cantidad" aria-label="Username"
+								aria-describedby="basic-addon1" />
+						</div>
+						<div class="input-group">
+							<input type="hidden" class="form-control" id="productoSeleccionadoId" placeholder="" aria-label="ID" aria-describedby="basic-addon1" />
+						</div>
+						<div class="mb-1">
+							<button type="submit" class="btn btn-primary " id="enviarProductoSeleccionado">Agregar</button>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="input-group mb-3">
+							<input class="form-control" id="ventaIdCliente" placeholder="Cliente Número:" aria-label="ID" aria-describedby="basic-addon1" />
+							<input class="form-control" id="ventaCliente" placeholder="Cliente" aria-label="Nombre" aria-describedby="basic-addon1" />
+						</div>
+						<div class="col-12 overflow-auto text-center" style="max-height: 300px">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Producto</th>
+										<th scope="col">Cantidad</th>
+										<th scope="col">Precio</th>
+									</tr>
+								</thead>
+								<tbody id="listaCarritoCompra">
+
+								</tbody>
+							</table>
+						</div>
+						<div class="col-2">
+							<input class="form-control form-control-sm" id="totalCarrito" type="number" placeholder="Total" aria-label=".form-control-sm example" />
+
+						</div>
+						<div class="mt-1">
+
+							<button type="submit" class="btn btn-primary " id="agregarCliente">Enviar</button>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
 
 

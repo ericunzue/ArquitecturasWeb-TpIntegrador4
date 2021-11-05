@@ -30,6 +30,8 @@ public class CompraController {
 			return new ResponseEntity<Compra>(compra,HttpStatus.OK);
 	}
 	
+	
+	
 
 
 	

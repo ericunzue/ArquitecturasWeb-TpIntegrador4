@@ -35,8 +35,9 @@ public class Compra {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Cliente cliente;
 	//		private List<Producto> compras;
+	private double total;
 
-//	
+
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	@CreationTimestamp
 	private LocalDateTime  fecha;
@@ -67,10 +68,14 @@ public class Compra {
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
+	
+	public void setTotal(double total)
+	{
+		this.total= total;
+	}
 
 
-
-
+	
 
 
 
