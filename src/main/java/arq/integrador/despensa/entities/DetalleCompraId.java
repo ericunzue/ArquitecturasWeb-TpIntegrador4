@@ -7,7 +7,7 @@ public class DetalleCompraId implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8405185866043592475L;
 	private int compra;
 	private int producto;
 	
@@ -16,7 +16,7 @@ public class DetalleCompraId implements Serializable {
 	}
 
 	public DetalleCompraId(int compra, int producto) {
-		super();
+		
 		this.compra = compra;
 		this.producto = producto;
 	}

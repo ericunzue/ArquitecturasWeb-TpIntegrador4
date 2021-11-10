@@ -24,6 +24,11 @@ public class Producto {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + "]";
+	}
+
 	public Producto() {
 		// TODO Auto-generated constructor stub
 	}

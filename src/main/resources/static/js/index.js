@@ -1,6 +1,8 @@
 import clienteRepository from "/js/services/ClienteRepository.js";
 import productoRepository from "/js/services/ProductoRepository.js";
-const baseUrl = "http://localhost:8080/"
+import compraRepository from "/js/services/CompraRepository.js";
+import detalleCompraRepository from "/js/services/DetalleCompraRepository.js";
+const baseUrl = "http://localhost:9090/"
 let COMPRAS = []
 window.addEventListener("DOMContentLoaded", async (e) => {
   e.preventDefault();
@@ -10,7 +12,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   addProducto();
   listarCLientesVenta();
   listarProductosVenta();
-  agregarAlCarrito()
+  agregarAlCarrito();
+  realizarCompra();
 
 
 
@@ -204,7 +207,7 @@ const listarCLientesVenta = async () => {
   let clientes = await clienteRepository.getAll(baseUrl);
 
   for (let cliente of clientes) {
-    selectCliente.innerHTML += `<option value=${cliente.idCliente}>${cliente.nombre_apellido}</option>`;
+    selectCliente.innerHTML += `<option value=${cliente.idCliente} data-direccion=${cliente.direccion}>${cliente.nombre_apellido}</option>`;
   }
   agregarCliente();
 }
@@ -231,11 +234,17 @@ const agregarCliente = () => {
   let cliente = document.getElementById("clienteVenta");
   cliente.addEventListener("click", () => {
 
+    let option = document.getElementById("clienteVenta");
     let idCliente = document.getElementById("clienteVenta").value;
     let clienteNombre = cliente.options[cliente.selectedIndex].text;
+    let direccion = cliente.options[cliente.selectedIndex].dataset.direccion;
+    console.log(cliente.options[cliente.selectedIndex].dataset.direccion);
+    console.log("direccion");
+    console.log(direccion);
 
     document.getElementById("ventaCliente").value = clienteNombre;
     document.getElementById("ventaIdCliente").value = idCliente;
+    document.getElementById("ventaClienteDireccion").value = direccion
   })
 }
 
@@ -290,6 +299,50 @@ const agregarAlCarrito = () => {
     document.getElementById("productoSeleccionadoCantidad").value = "";
   })
 
+
+}
+const realizarCompra = () => {
+
+  let btnRealizarCompra = document.getElementById("agregarCliente");
+  console.log("entro a realizar compra");
+  btnRealizarCompra.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(document.getElementById("ventaIdCliente").value);
+    let encabezado = {
+
+      cliente: {
+        idCliente: parseInt(document.getElementById("ventaIdCliente").value),
+        nombre_apellido: document.getElementById("ventaCliente").value,
+        direccion: document.getElementById("ventaClienteDireccion").value
+      },
+      fecha: new Date().getDate,
+      total: 100
+    }
+    console.log(encabezado);
+
+    let encabezadoCompra = compraRepository.addCompra(baseUrl, encabezado);
+
+    COMPRAS.forEach(element => {
+      //DETALLE COMPRA IDCOMPRA IDPRODUCTO CANT
+      let detalleCompra = {
+        compra: encabezadoCompra,
+        producto: {
+          idProducto: parseInt(element.idProducto),
+          nombre: element.nombre,
+          precio: parseInt(element.precio),
+          stock: 10
+
+        },
+        cantidad: parseInt(element.cantidad),
+        total: element.cantidad * element.precio
+      }
+      console.log("antes del fech");
+      console.log(detalleCompra)
+      detalleCompraRepository.addDetalleCompra(baseUrl, detalleCompra)
+
+    });
+
+  });
 
 }
 

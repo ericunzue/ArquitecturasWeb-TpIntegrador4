@@ -1,179 +1,190 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
-	</head>
+</head>
 
-	<body>
-		<div class="container text-center">
-			<h1>Arquitecturas Web. Tp4.</h1>
-			<section class="border-top border-primary ">
+<body>
+	<div class="container text-center">
+		<h1>Arquitecturas Web. Tp4.</h1>
+		<section class="border-top border-primary ">
 
-				<div class="row mt-3">
-					<h2>Servicio Cliente</h2>
-					<div class="col-8 overflow-auto text-center" style="max-height: 300px">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th scope="col">Nro_Cliente</th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Dirección</th>
-									<th scope="col">Editar</th>
-									<th scope="col">Eliminar</th>
-								</tr>
-							</thead>
-							<tbody id="listaClientes">
+			<div class="row mt-3">
+				<h2>Servicio Cliente</h2>
+				<div class="col-8 overflow-auto text-center" style="max-height: 300px">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Nro_Cliente</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Dirección</th>
+								<th scope="col">Editar</th>
+								<th scope="col">Eliminar</th>
+							</tr>
+						</thead>
+						<tbody id="listaClientes">
 
-							</tbody>
-						</table>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-4 overflow-auto text-center" style="max-height: 300px">
+					<h3>Alta y Modificación de Cliente</h3>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="clienteNombre" placeholder="Nombre"
+							aria-label="Username" aria-describedby="basic-addon1" />
 					</div>
-					<div class="col-4 overflow-auto text-center" style="max-height: 300px">
-						<h3>Alta y Modificación de Cliente</h3>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="clienteNombre" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="clienteDireccion" placeholder="Dirección" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="hidden" class="form-control" id="clienteId" placeholder="" aria-label="ID" aria-describedby="basic-addon1" />
-						</div>
-						<div class="mb-1">
-							<button type="submit" class="btn btn-primary " id="enviarCliente">Enviar</button>
-						</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="clienteDireccion" placeholder="Dirección"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="hidden" class="form-control" id="clienteId" placeholder="" aria-label="ID"
+							aria-describedby="basic-addon1" />
+					</div>
+					<div class="mb-1">
+						<button type="submit" class="btn btn-primary " id="enviarCliente">Enviar</button>
 					</div>
 				</div>
-			</section>
-			<br>
-			<section class="border-top border-primary">
-				<div class="row mt-3">
-					<h2>Servicio Producto</h2>
+			</div>
+		</section>
+		<br>
+		<section class="border-top border-primary">
+			<div class="row mt-3">
+				<h2>Servicio Producto</h2>
 
-					<div class="col-8 overflow-auto text-center" style="max-height: 300px">
+				<div class="col-8 overflow-auto text-center" style="max-height: 300px">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Producto</th>
+								<th scope="col">Precio</th>
+								<th scope="col">Stock</th>
+								<th scope="col">Editar</th>
+								<th scope="col">Eliminar</th>
+							</tr>
+						</thead>
+						<tbody id="listaProductos">
+
+						</tbody>
+					</table>
+				</div>
+				<div class="col-4">
+					<h3>Alta y Modificación de Producto</h3>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoNombre" placeholder="Producto"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoPrecio" placeholder="Precio"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoStock" placeholder="Stock"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="hidden" class="form-control" id="productoId" placeholder="" aria-label="ID"
+							aria-describedby="basic-addon1" />
+					</div>
+					<div class="mb-1">
+						<button type="submit" class="btn btn-primary " id="enviarProducto">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="border-top border-primary">
+			<div class="row mt-3  justify-content:center">
+				<h2>Servicio Venta</h2>
+
+				<div class="col-2 ml-auto">
+					<h3>Seleccionar Cliente</h3>
+					<div>
+						<select class="form-select" id="clienteVenta" aria-label="Default select example">
+							<option selected>Clientes</option>
+						</select>
+
+					</div>
+
+				</div>
+				<div class="col-8 overflow-auto text-center" style="max-height: 300px">
+					<table class="table table-hover" id="productosVenta">
+						<thead>
+							<tr>
+								<th scope="col">Producto</th>
+								<th scope="col">Precio</th>
+								<th scope="col">Stock</th>
+								<th scope="col">Agregar</th>
+							</tr>
+						</thead>
+						<tbody id="listaProductosVenta">
+
+						</tbody>
+					</table>
+				</div>
+				<div class="col-2">
+					<h3>Producto Seleccionado</h3>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoSeleccionadoNombre" placeholder="Producto"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoSeleccionadoPrecio" placeholder="Precio"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="productoSeleccionadoCantidad" placeholder="Cantidad"
+							aria-label="Username" aria-describedby="basic-addon1" />
+					</div>
+					<div class="input-group">
+						<input type="hidden" class="form-control" id="productoSeleccionadoId" placeholder=""
+							aria-label="ID" aria-describedby="basic-addon1" />
+					</div>
+					<div class="mb-1">
+						<button type="submit" class="btn btn-primary " id="enviarProductoSeleccionado">Agregar</button>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="input-group mb-3">
+						<input class="form-control" id="ventaIdCliente" placeholder="Cliente Número:" aria-label="ID"
+							aria-describedby="basic-addon1" />
+						<input class="form-control" id="ventaCliente" placeholder="Cliente" aria-label="Nombre"
+							aria-describedby="basic-addon1" />
+						<input class="form-control" id="ventaClienteDireccion" aria-label="Direccion"
+							aria-describedby="basic-addon1" />
+
+					</div>
+					<div class="col-12 overflow-auto text-center" style="max-height: 300px">
 						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th scope="col">Producto</th>
+									<th scope="col">Cantidad</th>
 									<th scope="col">Precio</th>
-									<th scope="col">Stock</th>
-									<th scope="col">Editar</th>
-									<th scope="col">Eliminar</th>
 								</tr>
 							</thead>
-							<tbody id="listaProductos">
-
-							</tbody>
-						</table>
-					</div>
-					<div class="col-4">
-						<h3>Alta y Modificación de Producto</h3>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoNombre" placeholder="Producto" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoPrecio" placeholder="Precio" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoStock" placeholder="Stock" aria-label="Username" aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="hidden" class="form-control" id="productoId" placeholder="" aria-label="ID" aria-describedby="basic-addon1" />
-						</div>
-						<div class="mb-1">
-							<button type="submit" class="btn btn-primary " id="enviarProducto">Enviar</button>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="border-top border-primary">
-				<div class="row mt-3  justify-content:center">
-					<h2>Servicio Venta</h2>
-
-					<div class="col-2 ml-auto">
-						<h3>Seleccionar Cliente</h3>
-						<div>
-							<select class="form-select" id="clienteVenta" aria-label="Default select example">
-								<option selected>Clientes</option>
-							</select>
-
-						</div>
-
-					</div>
-					<div class="col-8 overflow-auto text-center" style="max-height: 300px">
-						<table class="table table-hover" id="productosVenta">
-							<thead>
-								<tr>
-									<th scope="col">Producto</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Stock</th>
-									<th scope="col">Agregar</th>
-								</tr>
-							</thead>
-							<tbody id="listaProductosVenta">
+							<tbody id="listaCarritoCompra">
 
 							</tbody>
 						</table>
 					</div>
 					<div class="col-2">
-						<h3>Producto Seleccionado</h3>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoSeleccionadoNombre" placeholder="Producto" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoSeleccionadoPrecio" placeholder="Precio" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="productoSeleccionadoCantidad" placeholder="Cantidad" aria-label="Username"
-								aria-describedby="basic-addon1" />
-						</div>
-						<div class="input-group">
-							<input type="hidden" class="form-control" id="productoSeleccionadoId" placeholder="" aria-label="ID" aria-describedby="basic-addon1" />
-						</div>
-						<div class="mb-1">
-							<button type="submit" class="btn btn-primary " id="enviarProductoSeleccionado">Agregar</button>
-						</div>
+						<input class="form-control form-control-sm" id="totalCarrito" type="number" placeholder="Total"
+							aria-label=".form-control-sm example" />
+
 					</div>
-					<div class="col-12">
-						<div class="input-group mb-3">
-							<input class="form-control" id="ventaIdCliente" placeholder="Cliente Número:" aria-label="ID" aria-describedby="basic-addon1" />
-							<input class="form-control" id="ventaCliente" placeholder="Cliente" aria-label="Nombre" aria-describedby="basic-addon1" />
-						</div>
-						<div class="col-12 overflow-auto text-center" style="max-height: 300px">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th scope="col">Producto</th>
-										<th scope="col">Cantidad</th>
-										<th scope="col">Precio</th>
-									</tr>
-								</thead>
-								<tbody id="listaCarritoCompra">
+					<div class="mt-1">
 
-								</tbody>
-							</table>
-						</div>
-						<div class="col-2">
-							<input class="form-control form-control-sm" id="totalCarrito" type="number" placeholder="Total" aria-label=".form-control-sm example" />
-
-						</div>
-						<div class="mt-1">
-
-							<button type="submit" class="btn btn-primary " id="agregarCliente">Enviar</button>
-						</div>
+						<button type="submit" class="btn btn-primary " id="agregarCliente">Enviar</button>
 					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
+	</div>
 
 
 
@@ -187,13 +198,16 @@
 
 
 
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-			integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-			integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-		<script type="module" src="js/index.js"></script>
-		<script type="module" src="js/services/ClienteRepository.js"></script>
-		<script type="module" src="js/services/ProductoRepository.js"></script>
-	</body>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+		integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+		crossorigin="anonymous"></script>
+	<script type="module" src="js/index.js"></script>
+	<script type="module" src="js/services/ClienteRepository.js"></script>
+	<script type="module" src="js/services/ProductoRepository.js"></script>
+	<script type="module" src="js/services/DetalleCompraRepository.js"></script>
+</body>
 
 </html>

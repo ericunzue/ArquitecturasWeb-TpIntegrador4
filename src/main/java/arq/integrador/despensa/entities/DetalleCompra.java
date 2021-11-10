@@ -29,6 +29,12 @@ public class DetalleCompra {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleCompra [compra=" + compra + ", producto=" + producto + ", cantidad=" + cantidad + ", total="
+				+ total + "]";
+	}
+
 	public DetalleCompra(Compra compra, Producto producto, int cantidad) {
 		super();
 		this.compra = compra;
