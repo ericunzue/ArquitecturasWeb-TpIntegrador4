@@ -1,5 +1,6 @@
 package arq.integrador.despensa.services;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,12 +22,16 @@ public class DetalleCompraService {
 	
 	public List<DetalleCompra> getDetalle() {
 
+	// retorna vacio. DetalleCompra tiene una clase DetalleCompraId para formar el idCompuesto.
 		return this.detalle.findAll();
 }
 
-public Optional<DetalleCompra> getCompraById(DetalleCompraId id) {
-		return this.detalle.findById(id);
-}
+
+ public Optional<DetalleCompra> getCompraById(DetalleCompraId id) { 
+	 
+	 return  this.detalle.findById(id);
+	 }
+ 
 
 
 

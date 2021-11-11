@@ -2,13 +2,17 @@ package arq.integrador.despensa.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+
+
+
 public class DetalleCompraId implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 8405185866043592475L;
-	private int compra;
+	
+	
+	private int compra;	
 	private int producto;
 	
 	public DetalleCompraId() {
@@ -45,6 +49,14 @@ public class DetalleCompraId implements Serializable {
 			return false;
 		return true;
 	}
+
+	
+
+	
+
+
+
+	
 	
 	
 	

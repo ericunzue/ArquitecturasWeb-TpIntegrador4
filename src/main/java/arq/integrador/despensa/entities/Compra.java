@@ -1,6 +1,7 @@
 package arq.integrador.despensa.entities;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -27,9 +28,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Compra {
 
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)	
+	
 	private int idCompra;
+	
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -73,6 +77,14 @@ public class Compra {
 	{
 		this.total= total;
 	}
+
+	@Override
+	public String toString() {
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", total=" + total + ", fecha=" + fecha + "]";
+	}
+
+	
+	
 
 
 	

@@ -1,5 +1,9 @@
 package arq.integrador.despensa.entities;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -12,14 +16,16 @@ import javax.persistence.OneToOne;
 public class DetalleCompra {
 	
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
+	
 	@JoinColumn(name="idCompra")
+
 	private Compra compra;
 	
 	@Id
-	@OneToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="idProducto")
-	private Producto producto;
+	private Producto producto;	
 	
 	private int cantidad;
 	
@@ -35,12 +41,12 @@ public class DetalleCompra {
 				+ total + "]";
 	}
 
-	public DetalleCompra(Compra compra, Producto producto, int cantidad) {
+	public DetalleCompra(Compra compra, Producto producto, int cantidad,double total) {
 		super();
 		this.compra = compra;
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.total = cantidad*producto.getPrecio();
+		this.total = total;
 	}
 	
 	

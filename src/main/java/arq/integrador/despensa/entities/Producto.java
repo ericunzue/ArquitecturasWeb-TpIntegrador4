@@ -1,5 +1,6 @@
 package arq.integrador.despensa.entities;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,9 +8,15 @@ import javax.persistence.Id;
 
 @Entity
 public class Producto {
+
+	/**
+	 * 
+	 */
 	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)	
+	
 	private int idProducto;
 	
 	private String nombre;
@@ -60,6 +67,11 @@ public class Producto {
 	public int getIdProducto() {
 		return idProducto;
 	}
+
+	
+
+	
+	
 	
 	
 	
