@@ -5,33 +5,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Producto {
-	
+
+	/**
+	 * 
+	 */
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
+
 	private int idProducto;
-	
+
 	private String nombre;
 	private double precio;
 	private int stock;
-
 
 	public Producto(String nombre, int stock, double precio) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stock = stock;
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + "]";
@@ -68,8 +67,5 @@ public class Producto {
 	public int getIdProducto() {
 		return idProducto;
 	}
-	
-	
-	
-	
+
 }

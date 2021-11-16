@@ -22,24 +22,24 @@ import arq.integrador.despensa.services.DetalleCompraService;
 @RequestMapping("/detalle")
 
 public class DetalleCompraController {
-	
+
 	@Autowired
 	private DetalleCompraService servicioDetalle;
-	
+
 	@GetMapping
 	public List<DetalleCompra> getAll() {
-		
-			return this.servicioDetalle.getDetalle();
+
+		return this.servicioDetalle.getDetalle();
 	}
-	
+
 	@PostMapping("")
-	public ResponseEntity<DetalleCompra> addDetalle(@RequestBody DetalleCompra detalleC){
-			System.out.println(detalleC.toString());
-			boolean ok = this.servicioDetalle.addDetalle(detalleC);
-			if (!ok) {
-					return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-			}
-			return new ResponseEntity<DetalleCompra>(detalleC,HttpStatus.OK);
+	public ResponseEntity<DetalleCompra> addDetalle(@RequestBody DetalleCompra detalleC) {
+		System.out.println(detalleC.toString());
+		boolean ok = this.servicioDetalle.addDetalle(detalleC);
+		if (!ok) {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<DetalleCompra>(detalleC, HttpStatus.OK);
 	}
 
 }
