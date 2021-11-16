@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import arq.integrador.despensa.entities.Compra;
 import arq.integrador.despensa.entities.DetalleCompra;
-
 import arq.integrador.despensa.services.DetalleCompraService;
 
 @RestController

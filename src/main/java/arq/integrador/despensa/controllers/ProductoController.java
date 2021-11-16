@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import arq.integrador.despensa.entities.Cliente;
 import arq.integrador.despensa.entities.Producto;
 import arq.integrador.despensa.services.ProductoService;
 
@@ -24,42 +23,41 @@ import arq.integrador.despensa.services.ProductoService;
 @RequestMapping("/producto")
 public class ProductoController {
 
-	
 	@Autowired
 	private ProductoService servicioProducto;
-	
-	@PostMapping("")
-	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto){
-			boolean ok = this.servicioProducto.addProducto(producto);
-			if (!ok) {
-					return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-			}
-			return new ResponseEntity<Producto>(producto,HttpStatus.OK);
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Producto> getProducto(@PathVariable("id") int id){
-			Optional<Producto> producto = this.servicioProducto.getProductoById(id);
-			if (producto.isEmpty()) {
-					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
 
-			return new ResponseEntity<Producto>(producto.get(),HttpStatus.OK);
+	@PostMapping("")
+	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto) {
+		boolean ok = this.servicioProducto.addProducto(producto);
+		if (!ok) {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
-	
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Producto> getProducto(@PathVariable("id") int id) {
+		Optional<Producto> producto = this.servicioProducto.getProductoById(id);
+		if (producto.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<Producto>(producto.get(), HttpStatus.OK);
+	}
+
 	@GetMapping
 	public List<Producto> getAll() {
 
-			return this.servicioProducto.getProductos();
+		return this.servicioProducto.getProductos();
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Producto> update(@PathVariable("id") int id,@RequestBody Producto producto) {
-			boolean ok = this.servicioProducto.update(id,producto);
-			if (!ok) {
-					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+	public ResponseEntity<Producto> update(@PathVariable("id") int id, @RequestBody Producto producto) {
+		boolean ok = this.servicioProducto.update(id, producto);
+		if (!ok) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
-	
+
 }

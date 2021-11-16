@@ -9,14 +9,9 @@ import javax.persistence.Id;
 @Entity
 public class Producto {
 
-	/**
-	 * 
-	 */
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
-
 	private int idProducto;
 
 	private String nombre;
@@ -29,11 +24,6 @@ public class Producto {
 		this.precio = precio;
 		this.stock = stock;
 
-	}
-
-	@Override
-	public String toString() {
-		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + "]";
 	}
 
 	public Producto() {
@@ -66,6 +56,11 @@ public class Producto {
 
 	public int getIdProducto() {
 		return idProducto;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + "]";
 	}
 
 }

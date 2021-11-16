@@ -1,15 +1,12 @@
 package arq.integrador.despensa.services;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import arq.integrador.despensa.entities.DetalleCompra;
 //import arq.integrador.despensa.entities.DetalleCompraId;
-
 import arq.integrador.despensa.repositories.DetalleCompraRepository;
 
 @Service
@@ -20,8 +17,6 @@ public class DetalleCompraService {
 
 	public List<DetalleCompra> getDetalle() {
 
-		// retorna vacio. DetalleCompra tiene una clase DetalleCompraId para formar el
-		// idCompuesto.
 		return this.detalle.findAll();
 	}
 
