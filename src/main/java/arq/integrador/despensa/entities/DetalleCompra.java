@@ -1,12 +1,10 @@
 package arq.integrador.despensa.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 //@IdClass(value=DetalleCompraId.class)
@@ -21,27 +19,21 @@ public class DetalleCompra {
 	@JoinColumn(name = "idProducto", nullable = false)
 	private Producto producto;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-
-	@JoinColumn(name = "idCompra")
-
-	private Compra compra;
-
 	private int cantidad;
 
-	private double total;
+	private double totalDetalle;
 
 	public DetalleCompra() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DetalleCompra(Compra compra, Producto producto, int cantidad, double total) {
+	public DetalleCompra(Compra compra, Producto producto, int cantidad, double totalDetalle) {
 
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.total = cantidad * this.producto.getPrecio();
-		this.total = total;
+		this.totalDetalle = cantidad * this.producto.getPrecio();
+		this.totalDetalle = totalDetalle;
 
 	}
 
@@ -62,16 +54,16 @@ public class DetalleCompra {
 	}
 
 	public double getTotal() {
-		return total;
+		return totalDetalle;
 	}
 
 	public void setTotal(double total) {
-		this.total = total;
+		this.totalDetalle = total;
 	}
 
 	@Override
 	public String toString() {
-		return "DetalleCompra [ producto=" + producto + ", cantidad=" + cantidad + ", total=" + total + "]";
+		return "DetalleCompra [ producto=" + producto + ", cantidad=" + cantidad + ", total=" + totalDetalle + "]";
 	}
 
 }

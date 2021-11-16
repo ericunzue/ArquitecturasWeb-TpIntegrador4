@@ -24,24 +24,18 @@ public class Compra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	private int idCompra;
 
 	@ManyToOne
 	@JoinColumn(name = "idCliente")
-
 	private Cliente cliente;
 
 	@OneToMany
 	@Cascade(CascadeType.ALL)
 	private List<DetalleCompra> detalles;
 
-	public double getTotal() {
-		return total;
-	}
-
 	@Column
-	private double total;
+	private double totalCompra;
 
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT-3")
 	@CreationTimestamp
@@ -51,12 +45,16 @@ public class Compra {
 
 	}
 
-	public Compra(Cliente cliente, List<DetalleCompra> detalles, double total) {
+	public Compra(Cliente cliente, List<DetalleCompra> detalles, double totalCompra) {
 		super();
 		this.cliente = cliente;
 		this.detalles = new ArrayList<>(detalles);
-		this.total = total;
+		this.totalCompra = totalCompra;
 
+	}
+
+	public double getTotal() {
+		return totalCompra;
 	}
 
 	public Cliente getCliente() {
@@ -76,7 +74,7 @@ public class Compra {
 	}
 
 	public void setTotal(double total) {
-		this.total = total;
+		this.totalCompra = total;
 	}
 
 	public List<DetalleCompra> getDetalles() {
@@ -85,7 +83,8 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", total=" + total + ", fecha=" + fecha + "]";
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", total=" + totalCompra + ", fecha=" + fecha
+				+ "]";
 	}
 
 }
