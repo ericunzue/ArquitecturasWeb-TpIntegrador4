@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import arq.integrador.despensa.entities.Compra;
+
 import arq.integrador.despensa.entities.DetalleCompra;
-import arq.integrador.despensa.entities.DetalleCompraId;
-import arq.integrador.despensa.repositories.CompraRepository;
+//import arq.integrador.despensa.entities.DetalleCompraId;
+
 import arq.integrador.despensa.repositories.DetalleCompraRepository;
 
 @Service
@@ -24,9 +24,9 @@ public class DetalleCompraService {
 		return this.detalle.findAll();
 }
 
-public Optional<DetalleCompra> getCompraById(DetalleCompraId id) {
-		return this.detalle.findById(id);
-}
+//public Optional<DetalleCompra> getCompraById(DetalleCompra id) {
+//		return this.detalle.findById(id);
+//}
 
 
 

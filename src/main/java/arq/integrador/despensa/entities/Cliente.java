@@ -1,6 +1,7 @@
 package arq.integrador.despensa.entities;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ public class Cliente {
 
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
+		@Column(nullable = false)
 		private int idCliente;
 		private String nombre_apellido;
 		private String direccion;

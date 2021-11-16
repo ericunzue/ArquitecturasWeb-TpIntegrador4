@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import arq.integrador.despensa.entities.Cliente;
+
 import arq.integrador.despensa.entities.Compra;
 
 import arq.integrador.despensa.services.CompraService;
@@ -33,6 +33,7 @@ public class CompraController {
 	
 	@PostMapping("")
 	public ResponseEntity<Compra> addCompra(@RequestBody Compra compra){
+		System.out.println(compra);
 			boolean ok = this.servicioCompra.addCompra(compra);
 			if (!ok) {
 					return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

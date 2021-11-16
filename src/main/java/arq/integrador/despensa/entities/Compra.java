@@ -2,7 +2,9 @@ package arq.integrador.despensa.entities;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,15 +30,25 @@ public class Compra {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idCompra;
+	
 	@ManyToOne
 	@JoinColumn(name="idCliente")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	
 	private Cliente cliente;
-	//		private List<Producto> compras;
+	
+	@OneToMany
+	@Cascade(CascadeType.ALL)
+	private List<DetalleCompra> detalles;
+	
+	public double getTotal() {
+		return total;
+	}
+
+	@Column
 	private double total;
 
 
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT-3")
 	@CreationTimestamp
 	private LocalDateTime  fecha;
 
@@ -46,9 +56,11 @@ public class Compra {
 
 	}
 
-	public Compra(Cliente cliente) {
+	public Compra(Cliente cliente, List<DetalleCompra> detalles, double total) {
 		super();
-		this.cliente = cliente;	
+		this.cliente = cliente;
+		this.detalles= new ArrayList<>(detalles);
+		this.total = total; 
 
 
 	}
@@ -72,6 +84,14 @@ public class Compra {
 	public void setTotal(double total)
 	{
 		this.total= total;
+	}
+	public List<DetalleCompra> getDetalles() {
+		return detalles;
+	}
+
+	@Override
+	public String toString() {
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", total=" + total + ", fecha=" + fecha + "]";
 	}
 
 

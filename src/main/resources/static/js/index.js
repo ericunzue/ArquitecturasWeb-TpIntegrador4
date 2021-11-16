@@ -2,8 +2,8 @@ import clienteRepository from "/js/services/ClienteRepository.js";
 import productoRepository from "/js/services/ProductoRepository.js";
 import compraRepository from "/js/services/CompraRepository.js";
 import detalleCompraRepository from "/js/services/DetalleCompraRepository.js";
-const baseUrl = "http://localhost:9090/"
-let COMPRAS = []
+const baseUrl = "http://localhost:8080/"
+let DETALLES = []
 window.addEventListener("DOMContentLoaded", async (e) => {
   e.preventDefault();
 
@@ -13,7 +13,6 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   listarCLientesVenta();
   listarProductosVenta();
   agregarAlCarrito();
-  realizarCompra();
 
 
 
@@ -230,6 +229,7 @@ const listarProductosVenta = async () => {
   seleccionarProducto()
 }
 
+//Arma el cliente para la venta
 const agregarCliente = () => {
   let cliente = document.getElementById("clienteVenta");
   cliente.addEventListener("click", () => {
@@ -238,14 +238,13 @@ const agregarCliente = () => {
     let idCliente = document.getElementById("clienteVenta").value;
     let clienteNombre = cliente.options[cliente.selectedIndex].text;
     let direccion = cliente.options[cliente.selectedIndex].dataset.direccion;
-    console.log(cliente.options[cliente.selectedIndex].dataset.direccion);
-    console.log("direccion");
-    console.log(direccion);
 
     document.getElementById("ventaCliente").value = clienteNombre;
     document.getElementById("ventaIdCliente").value = idCliente;
     document.getElementById("ventaClienteDireccion").value = direccion
+
   })
+  realizarCompra();
 }
 
 const seleccionarProducto = async () => {
@@ -274,22 +273,32 @@ const agregarAlCarrito = () => {
   let carrito = document.getElementById("listaCarritoCompra");
 
   carrito.innerHTML = "";
-
+  let total = 0;
   let btn = document.getElementById("enviarProductoSeleccionado").addEventListener("click", (e) => {
-    let fila = {
-      nombre: document.getElementById("productoSeleccionadoNombre").value,
-      precio: document.getElementById("productoSeleccionadoPrecio").value,
-      idProducto: document.getElementById("productoSeleccionadoId").value,
-      cantidad: document.getElementById("productoSeleccionadoCantidad").value,
+
+
+    let id = document.getElementById("productoSeleccionadoId").value
+    let producto = document.getElementById("productoSeleccionadoNombre").value
+    let valor = document.getElementById("productoSeleccionadoPrecio").value
+    let cuantos = document.getElementById("productoSeleccionadoCantidad").value
+
+    let detalle = {
+      producto: {
+        idProducto: id,
+        nombre: producto,
+        precio: valor
+      },
+      cantidad: cuantos
     }
     e.preventDefault();
-    COMPRAS.push(fila);
+    DETALLES.push(detalle);
+    console.log(DETALLES);
 
-    let { nombre, precio, idProducto, cantidad } = fila;
+
     carrito.innerHTML += `<tr class="producto" value="">
-      <td>${nombre}</td>
-      <td>${cantidad}</td>
-      <td>${precio}</td>  
+      <td>${producto}</td>
+      <td>${cuantos}</td>
+      <td>${valor}</td>  
   <!--agregar el type="hidden" para el idProducto  -->
       </tr>`;
 
@@ -297,50 +306,33 @@ const agregarAlCarrito = () => {
     document.getElementById("productoSeleccionadoPrecio").value = "";
     document.getElementById("productoSeleccionadoId").value = "";
     document.getElementById("productoSeleccionadoCantidad").value = "";
+    total += valor * cuantos;
+    document.getElementById("totalCarrito").value = total;
+    // return total;
   })
+
 
 
 }
 const realizarCompra = () => {
-
+  console.log("clienteID");
+  console.log(document.getElementById("ventaIdCliente").value);
   let btnRealizarCompra = document.getElementById("agregarCliente");
-  console.log("entro a realizar compra");
+
+
   btnRealizarCompra.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(document.getElementById("ventaIdCliente").value);
-    let encabezado = {
 
+    let compra = {
       cliente: {
-        idCliente: parseInt(document.getElementById("ventaIdCliente").value),
+        idCliente: document.getElementById("ventaIdCliente").value,
         nombre_apellido: document.getElementById("ventaCliente").value,
         direccion: document.getElementById("ventaClienteDireccion").value
       },
-      fecha: new Date().getDate,
-      total: 100
+      detalles: DETALLES,
+      total: document.getElementById("totalCarrito").value,
     }
-    console.log(encabezado);
-
-    let encabezadoCompra = compraRepository.addCompra(baseUrl, encabezado);
-
-    COMPRAS.forEach(element => {
-      //DETALLE COMPRA IDCOMPRA IDPRODUCTO CANT
-      let detalleCompra = {
-        compra: encabezadoCompra,
-        producto: {
-          idProducto: parseInt(element.idProducto),
-          nombre: element.nombre,
-          precio: parseInt(element.precio),
-          stock: 10
-
-        },
-        cantidad: parseInt(element.cantidad),
-        total: element.cantidad * element.precio
-      }
-      console.log("antes del fech");
-      console.log(detalleCompra)
-      detalleCompraRepository.addDetalleCompra(baseUrl, detalleCompra)
-
-    });
+    compraRepository.addCompra(baseUrl, compra);
 
   });
 

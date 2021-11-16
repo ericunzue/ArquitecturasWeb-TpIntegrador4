@@ -2,8 +2,7 @@ const DetalleCompraRepository = () => {
     const addDetalleCompra = async (baseUrl, detalle) => {
 
         try {
-            console.log("detalle")
-            console.log(detalle);
+
             let response = await fetch(baseUrl + 'detalle', {
 
                 method: "POST",
@@ -17,8 +16,6 @@ const DetalleCompraRepository = () => {
             console.log(responseJson);
 
 
-
-
         } catch (error) {
             console.log(error);
         }
@@ -28,13 +25,6 @@ const DetalleCompraRepository = () => {
 
         addDetalleCompra: addDetalleCompra,
     }
-
-
-
-
-
-
-
 
 
 }

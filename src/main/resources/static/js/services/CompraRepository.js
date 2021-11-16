@@ -1,10 +1,9 @@
 const CompraRepository = () => {
 
     const addCompra = async (baseUrl, compra) => {
-
+        console.log(compra);
         try {
-            console.log("entro")
-            console.log(compra);
+
             let response = await fetch(baseUrl + 'compra', {
 
                 method: "POST",
@@ -12,9 +11,12 @@ const CompraRepository = () => {
                     "Accept": "application/json",
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify(compra)
+                body: JSON.stringify(compra),
+
             });
             let responseJson = await response.json();
+            console.log("responseJson Compra Repository");
+            console.log(responseJson);
             return responseJson;
 
 
