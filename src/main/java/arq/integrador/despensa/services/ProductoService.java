@@ -31,6 +31,8 @@ public void deleteById(int id) {
 
 public boolean addProducto(Producto producto) {
 		return this.productos.save(producto)!=null;
+		
+
 
 }
 
@@ -45,6 +47,10 @@ public boolean update(int id ,Producto productoModificado) {
 		return this.productos.save(producto)!=null;
 
 }
+
+public List<Producto> getProductosPorCliente(Long idCliente){
 	
+	 return this.productos.getProductosHabilitadosPorCliente(idCliente);
+}	
 
 }

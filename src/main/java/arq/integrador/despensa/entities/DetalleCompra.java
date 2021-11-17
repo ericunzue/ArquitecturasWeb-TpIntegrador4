@@ -32,7 +32,7 @@ public class DetalleCompra {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.totalDetalle = cantidad * this.producto.getPrecio();
+		//this.totalDetalle = cantidad * this.producto.getPrecio();
 		this.totalDetalle = totalDetalle;
 
 	}
@@ -53,12 +53,18 @@ public class DetalleCompra {
 		this.cantidad = cantidad;
 	}
 
-	public double getTotal() {
+
+
+	public double getTotalDetalle() {
 		return totalDetalle;
 	}
 
-	public void setTotal(double total) {
-		this.totalDetalle = total;
+	public void setTotalDetalle(double totalDetalle) {
+		this.totalDetalle = totalDetalle;
+	}
+
+	public int getIdDetalle() {
+		return idDetalle;
 	}
 
 	@Override

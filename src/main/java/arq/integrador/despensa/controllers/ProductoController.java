@@ -59,5 +59,12 @@ public class ProductoController {
 		}
 		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
+	
+	@GetMapping("/productoCliente/{id}")
+	public List<Producto> getProductoPorCliente(@PathVariable("id") Long id) {
+		List<Producto> productos = this.servicioProducto.getProductosPorCliente(id);
+		return productos;
+	}
+
 
 }

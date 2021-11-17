@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   cargarProductos();
   addProducto();
   listarCLientesVenta();
-  //listarProductosVenta();
+  listarProductosVenta();
   agregarAlCarrito();
 
 
@@ -209,12 +209,10 @@ const listarCLientesVenta = async () => {
     selectCliente.innerHTML += `<option value=${cliente.idCliente} data-direccion=${cliente.direccion}>${cliente.nombre_apellido}</option>`;
   }
   agregarCliente();
-
 }
 
 const listarProductosVenta = async () => {
-  let id = document.getElementById("clienteVenta").value;
-  let productos = await productoRepository.getProductosHabilitadosPorCliente(baseUrl, id);
+  let productos = await productoRepository.getAll(baseUrl);
   let container = document.getElementById("listaProductosVenta");
   container.innerHTML = "";
 
@@ -244,7 +242,7 @@ const agregarCliente = () => {
     document.getElementById("ventaCliente").value = clienteNombre;
     document.getElementById("ventaIdCliente").value = idCliente;
     document.getElementById("ventaClienteDireccion").value = direccion
-    listarProductosVenta();
+
   })
   realizarCompra();
 }
@@ -283,7 +281,6 @@ const agregarAlCarrito = () => {
     let producto = document.getElementById("productoSeleccionadoNombre").value
     let valor = document.getElementById("productoSeleccionadoPrecio").value
     let cuantos = document.getElementById("productoSeleccionadoCantidad").value
-    let totalDet = valor * cuantos
 
     let detalle = {
       producto: {
@@ -291,7 +288,6 @@ const agregarAlCarrito = () => {
         nombre: producto,
         precio: valor
       },
-      totalDetalle: totalDet,
       cantidad: cuantos
     }
     e.preventDefault();

@@ -49,19 +49,6 @@ const ProductoRepository = () => {
       console.log(error);
     }
   }
-  const getProductosHabilitadosPorCliente = async (baseUrl, id) => {
-
-    let producto;
-    try {
-      let response = await fetch(baseUrl + 'producto/productoCliente/' + id);
-      let json = await response.json();
-      producto = json;
-      return producto;
-
-    } catch (error) {
-      console.log(error);
-    }
-  }
   const updateProducto = async (baseUrl, id, producto) => {
     try {
       let response = await fetch(baseUrl + 'producto/' + id, {
@@ -84,7 +71,6 @@ const ProductoRepository = () => {
   return {
     getAll: getAll,
     getById: getById,
-    getProductosHabilitadosPorCliente: getProductosHabilitadosPorCliente,
     updateProducto: updateProducto,
     addProducto: addProducto,
   }

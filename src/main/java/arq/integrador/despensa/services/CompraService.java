@@ -33,6 +33,8 @@ public void deleteById(int id) {
 
 public boolean addCompra(Compra compra) {
 	System.out.println(compra);
+	
+	//
 		return this.compras.save(compra)!=null;
 
 }
