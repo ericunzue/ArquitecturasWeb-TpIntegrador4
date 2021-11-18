@@ -48,7 +48,7 @@ public boolean update(int id ,Producto productoModificado) {
 
 }
 
-public List<Producto> getProductosPorCliente(Long idCliente){
+public List<Producto> getProductosPorCliente(int idCliente){
 	
 	 return this.productos.getProductosHabilitadosPorCliente(idCliente);
 }	

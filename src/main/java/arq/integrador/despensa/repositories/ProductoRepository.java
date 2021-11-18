@@ -12,13 +12,14 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 	
 	
 	
-	@Modifying
-	@Query( value="SELECT * FROM producto p where id_producto not in (SELECT det.id_producto FROM compra c inner join compra_detalles" 
-			+ " d on c.id_compra=d.compra_id_compra inner join detalle_compra det" 
-			+ " on d.detalles_id_detalle= det.id_detalle"
-			+ " where c.id_cliente=:idCliente"
-			+ " GROUP BY  det.id_producto"
-			+ " HAVING (sum(det.cantidad <=3)))",nativeQuery=true)
-	List<Producto>getProductosHabilitadosPorCliente(Long idCliente);
+	
+	@Query("SELECT p FROM Producto p where p.id_producto not in (SELECT det.id_producto FROM Compra c" 
+			+ " JOIN c.detalles det" 
+			+ " where (c.cliente=?1 and (DATE(c.fecha) = CURRENT_DATE()))"
+			+ " GROUP BY det.id_producto"
+			+ " HAVING (sum(det.cantidad<=3)))")
+	List<Producto>getProductosHabilitadosPorCliente(int idCliente);
+	
+	
 
 }

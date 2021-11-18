@@ -61,7 +61,7 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/productoCliente/{id}")
-	public List<Producto> getProductoPorCliente(@PathVariable("id") Long id) {
+	public List<Producto> getProductoPorCliente(@PathVariable("id") int id) {
 		List<Producto> productos = this.servicioProducto.getProductosPorCliente(id);
 		return productos;
 	}
