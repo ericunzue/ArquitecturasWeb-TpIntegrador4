@@ -3,8 +3,10 @@ package arq.integrador.despensa.services;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import arq.integrador.despensa.entities.Producto;
 import arq.integrador.despensa.repositories.ProductoRepository;
@@ -48,6 +50,7 @@ public boolean update(int id ,Producto productoModificado) {
 
 }
 
+@Transactional(readOnly = true)
 public List<Producto> getProductosPorCliente(int idCliente){
 	
 	 return this.productos.getProductosHabilitadosPorCliente(idCliente);

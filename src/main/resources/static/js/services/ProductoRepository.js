@@ -51,12 +51,12 @@ const ProductoRepository = () => {
   }
   const getProductosHabilitadosPorCliente = async (baseUrl, id) => {
 
-    let producto;
+    let productos = [];
     try {
-      let response = await fetch(baseUrl + 'producto/productoCliente/' + id);
+      let response = await fetch(baseUrl + 'producto/byCliente/' + id);
       let json = await response.json();
-      producto = json;
-      return producto;
+      productos = json;
+      return productos;
 
     } catch (error) {
       console.log(error);

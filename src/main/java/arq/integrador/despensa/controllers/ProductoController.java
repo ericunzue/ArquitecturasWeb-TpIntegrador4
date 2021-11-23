@@ -60,7 +60,7 @@ public class ProductoController {
 		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
 	
-	@GetMapping("/productoCliente/{id}")
+	@GetMapping("/byCliente/{id}")
 	public List<Producto> getProductoPorCliente(@PathVariable("id") int id) {
 		List<Producto> productos = this.servicioProducto.getProductosPorCliente(id);
 		return productos;

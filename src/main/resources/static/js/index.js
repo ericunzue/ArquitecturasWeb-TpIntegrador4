@@ -214,7 +214,9 @@ const listarCLientesVenta = async () => {
 
 const listarProductosVenta = async () => {
   let id = document.getElementById("clienteVenta").value;
+  console.log(id);
   let productos = await productoRepository.getProductosHabilitadosPorCliente(baseUrl, id);
+  console.log(productos);
   let container = document.getElementById("listaProductosVenta");
   container.innerHTML = "";
 
