@@ -65,6 +65,9 @@ public class ProductoController {
 		List<Producto> productos = this.servicioProducto.getProductosPorCliente(id);
 		return productos;
 	}
+	
+	@GetMapping("/masVendido")
+	public Iterable<Producto> getProductosMasVendidos(){return servicioProducto.getProductoMasVendido();}
 
 
 }

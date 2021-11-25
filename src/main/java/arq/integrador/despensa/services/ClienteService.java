@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import arq.integrador.despensa.dto.ComprasPorClienteDTO;
 import arq.integrador.despensa.entities.Cliente;
 import arq.integrador.despensa.repositories.ClienteRepository;
 
@@ -32,6 +33,12 @@ public class ClienteService {
 		public boolean addCliente(Cliente cliente) {
 				return this.clientes.save(cliente)!=null;
 
+		}
+		
+		public List<ComprasPorClienteDTO> comprasPorCliente(){
+			
+			return this.clientes.selectTotalComprasClientes();
+			
 		}
 
 

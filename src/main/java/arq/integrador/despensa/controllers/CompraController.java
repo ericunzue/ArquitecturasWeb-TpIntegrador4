@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import arq.integrador.despensa.dto.ComprasDiariasDTO;
 import arq.integrador.despensa.entities.Compra;
 
 import arq.integrador.despensa.services.CompraService;
@@ -41,7 +41,11 @@ public class CompraController {
 			return new ResponseEntity<Compra>(compra,HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/comprasDiarias")
+	public List<ComprasDiariasDTO> obtenerComprasDiarias() {
+
+			return this.servicioCompra.comprasporDia();
+	}
 	
 
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import arq.integrador.despensa.dto.ComprasDiariasDTO;
 import arq.integrador.despensa.entities.Compra;
 
 import arq.integrador.despensa.repositories.CompraRepository;
@@ -46,4 +47,9 @@ public boolean update(int id ,Compra compraModificado) {
 		return this.compras.save(compra)!=null;
 
 }
+public List<ComprasDiariasDTO> comprasporDia(){
+	return this.compras.selectVentasDiarias();
+}
+
+
 }

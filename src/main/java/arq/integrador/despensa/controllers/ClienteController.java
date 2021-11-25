@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import arq.integrador.despensa.dto.ComprasPorClienteDTO;
 import arq.integrador.despensa.entities.Cliente;
 import arq.integrador.despensa.services.ClienteService;
 
@@ -72,6 +72,12 @@ public class ClienteController {
 				}
 				return new ResponseEntity<Cliente>(cliente,HttpStatus.OK);
 		}
+		
+		@GetMapping("/totalCompras")
+		public List<ComprasPorClienteDTO> getComprasTotales(){
+			return servicioCliente.comprasPorCliente();
+		}
+		
 
 
 
