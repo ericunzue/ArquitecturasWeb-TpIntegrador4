@@ -20,65 +20,61 @@ import arq.integrador.despensa.dto.ComprasPorClienteDTO;
 import arq.integrador.despensa.entities.Cliente;
 import arq.integrador.despensa.services.ClienteService;
 
-
 @RestController
 @CrossOrigin
 @RequestMapping("/cliente")
 public class ClienteController {
 
-		@Autowired
-		private ClienteService servicioCliente;
+	@Autowired
+	private ClienteService servicioCliente;
 
-		@GetMapping
-		public List<Cliente> getAll() {
+	@GetMapping
+	public List<Cliente> getAll() {
 
-				return this.servicioCliente.getClientes();
+		return this.servicioCliente.getClientes();
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Cliente> getCliente(@PathVariable("id") int id) {
+		Optional<Cliente> cliente = this.servicioCliente.getClienteById(id);
+		if (!cliente.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		@GetMapping("/{id}")
-		public ResponseEntity<Cliente> getCliente(@PathVariable("id") int id){
-				Optional<Cliente> cliente = this.servicioCliente.getClienteById(id);
-				if (cliente.isEmpty()) {
-						return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
+		return new ResponseEntity<Cliente>(cliente.get(), HttpStatus.OK);
+	}
 
-				return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.OK);
+	@PostMapping("")
+	public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente) {
+		boolean ok = this.servicioCliente.addCliente(cliente);
+		if (!ok) {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+	}
 
-		@PostMapping("")
-		public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente){
-				boolean ok = this.servicioCliente.addCliente(cliente);
-				if (!ok) {
-						return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-				}
-				return new ResponseEntity<Cliente>(cliente,HttpStatus.OK);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Cliente> deleteCliente(@PathVariable("id") int id) {
+		Optional<Cliente> cliente = this.servicioCliente.getClienteById(id);
+		if (!cliente.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		this.servicioCliente.deleteById(id);
+		return new ResponseEntity<Cliente>(cliente.get(), HttpStatus.OK);
+	}
 
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Cliente> deleteCliente(@PathVariable("id") int id){
-				Optional<Cliente> cliente = this.servicioCliente.getClienteById(id);
-				if (cliente.isEmpty()) {
-						return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
-				this.servicioCliente.deleteById(id);
-				return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.OK);
+	@PutMapping("/{id}")
+	public ResponseEntity<Cliente> update(@PathVariable("id") int id, @RequestBody Cliente cliente) {
+		boolean ok = this.servicioCliente.update(id, cliente);
+		if (!ok) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+	}
 
-		@PutMapping("/{id}")
-		public ResponseEntity<Cliente> update(@PathVariable("id") int id,@RequestBody Cliente cliente) {
-				boolean ok = this.servicioCliente.update(id,cliente);
-				if (!ok) {
-						return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-				}
-				return new ResponseEntity<Cliente>(cliente,HttpStatus.OK);
-		}
-		
-		@GetMapping("/totalCompras")
-		public List<ComprasPorClienteDTO> getComprasTotales(){
-			return servicioCliente.comprasPorCliente();
-		}
-		
-
-
+	@GetMapping("/totalCompras")
+	public List<ComprasPorClienteDTO> getComprasTotales() {
+		return servicioCliente.comprasPorCliente();
+	}
 
 }

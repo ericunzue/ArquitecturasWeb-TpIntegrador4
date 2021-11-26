@@ -15,7 +15,7 @@
 	<name>TpIntegrador4</name>
 	<description>Tp Integrador 4 para Arquitecturas Web (TUDAI) UNICEN</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>

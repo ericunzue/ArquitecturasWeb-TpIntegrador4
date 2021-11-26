@@ -38,7 +38,7 @@ public class ProductoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Producto> getProducto(@PathVariable("id") int id) {
 		Optional<Producto> producto = this.servicioProducto.getProductoById(id);
-		if (producto.isEmpty()) {
+		if (!producto.isPresent()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
@@ -59,15 +59,16 @@ public class ProductoController {
 		}
 		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/byCliente/{id}")
 	public List<Producto> getProductoPorCliente(@PathVariable("id") int id) {
 		List<Producto> productos = this.servicioProducto.getProductosPorCliente(id);
 		return productos;
 	}
-	
-	@GetMapping("/masVendido")
-	public Iterable<Producto> getProductosMasVendidos(){return servicioProducto.getProductoMasVendido();}
 
+	@GetMapping("/masVendido")
+	public Iterable<Producto> getProductosMasVendidos() {
+		return servicioProducto.getProductoMasVendido();
+	}
 
 }
