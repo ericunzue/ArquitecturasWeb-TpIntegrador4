@@ -2,8 +2,11 @@ package arq.integrador.despensa.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ComprasDiariasDTO {
 
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT-3")
 	private LocalDateTime fecha;
 	private double total_compra;
 	public ComprasDiariasDTO(LocalDateTime fecha, double total_compra) {

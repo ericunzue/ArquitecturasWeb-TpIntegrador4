@@ -13,6 +13,20 @@ const ClienteRepository = () => {
     }
   };
 
+  const reporteMontoTotalPorCliente = async (baseUrl) => {
+    let clientes = [];
+    try {
+      let response = await fetch(baseUrl + 'cliente/totalCompras');
+      let json = await response.json();
+      clientes = json;
+      console.log(clientes);
+      return clientes;
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getById = async (baseUrl, id) => {
 
     let cliente;
@@ -45,6 +59,8 @@ const ClienteRepository = () => {
     }
   }
 
+
+
   const addCliente = async (baseUrl, cliente) => {
 
     try {
@@ -70,6 +86,7 @@ const ClienteRepository = () => {
     getById: getById,
     updateCliente: updateCliente,
     addCliente: addCliente,
+    reporteMontoTotalPorCliente: reporteMontoTotalPorCliente,
   }
 };
 

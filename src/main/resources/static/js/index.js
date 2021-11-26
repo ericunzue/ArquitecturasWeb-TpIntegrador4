@@ -13,10 +13,89 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   listarCLientesVenta();
   //listarProductosVenta();
   agregarAlCarrito();
+  reporteMontoCliente();
+  reporteComprasDiarias();
+  reporteProductoMasVendido();
+
 
 
 
 })
+
+const reporteMontoCliente = async () => {
+
+  let reporte = await clienteRepository.reporteMontoTotalPorCliente(baseUrl);
+  let btnReporteCliente = document.getElementById("repTotalPorCliente").addEventListener(
+    'click', (e) => {
+
+      let container = document.getElementById("reporteClientes");
+
+
+      container.innerHTML = "";
+      for (const repo of reporte) {
+        let { nombre, direccion, total_compras } = repo;
+
+
+        container.innerHTML += `<tr class=" value="">
+        
+                    <td>${nombre}</td>
+                    <td>${direccion}</td>
+                    <td>${total_compras}</td>                   
+                    </tr>`;
+      }
+
+    }
+  )
+
+}
+
+const reporteComprasDiarias = async () => {
+
+  let reporte = await compraRepository.reporteComprasDiarias(baseUrl);
+  let btnReporteDiarias = document.getElementById("repDiario").addEventListener(
+    'click', (e) => {
+
+      let container = document.getElementById("reporteDiario");
+
+
+      container.innerHTML = "";
+      for (const repo of reporte) {
+        let { fecha, total_compra } = repo;
+        container.innerHTML += `<tr class=" value="">
+        
+                    <td>${fecha}</td>
+                    <td>${total_compra}</td>                                  
+                    </tr>`;
+      }
+
+    }
+  )
+
+}
+
+const reporteProductoMasVendido = async () => {
+
+  let reporte = await productoRepository.productoMasVendido(baseUrl);
+  let btnProductoMasVendido = document.getElementById("repProductoMasVendido").addEventListener(
+    'click', (e) => {
+
+      let container = document.getElementById("reporteProdMasVendido");
+
+
+      container.innerHTML = "";
+      for (const repo of reporte) {
+        let { nombre, precio } = repo;
+        container.innerHTML += `<tr class=" value="">
+        
+                    <td>${nombre}</td>
+                    <td>${precio}</td>                                  
+                    </tr>`;
+      }
+
+    }
+  )
+
+}
 
 
 const cargarClientes = async () => {
@@ -43,6 +122,7 @@ const cargarClientes = async () => {
   eliminarCliente();
   addEventEditarCliente();
   addCliente();
+
 }
 
 
@@ -111,7 +191,7 @@ const addCliente = () => {
       clienteRepository.updateCliente(baseUrl, id, cliente);
 
     }
-
+    window.location.reload();
 
 
   })
@@ -167,6 +247,7 @@ const addProducto = () => {
       productoRepository.updateProducto(baseUrl, id, producto);
 
     }
+    window.location.reload();
 
   })
 }
@@ -232,6 +313,8 @@ const listarProductosVenta = async () => {
   }
   seleccionarProducto()
 }
+
+
 
 //Arma el cliente para la venta
 const agregarCliente = () => {
@@ -339,6 +422,7 @@ const realizarCompra = () => {
       total: document.getElementById("totalCarrito").value,
     }
     compraRepository.addCompra(baseUrl, compra);
+    window.location.reload();
 
   });
 

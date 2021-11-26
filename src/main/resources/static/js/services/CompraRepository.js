@@ -25,9 +25,24 @@ const CompraRepository = () => {
         }
     }
 
+    const reporteComprasDiarias = async (baseUrl) => {
+        let compras = [];
+        try {
+            let response = await fetch(baseUrl + 'compra/comprasDiarias');
+            let json = await response.json();
+            compras = json;
+            console.log(compras);
+            return compras;
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return {
 
         addCompra: addCompra,
+        reporteComprasDiarias: reporteComprasDiarias
     }
 
 

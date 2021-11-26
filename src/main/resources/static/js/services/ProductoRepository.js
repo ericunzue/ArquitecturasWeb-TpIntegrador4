@@ -79,6 +79,19 @@ const ProductoRepository = () => {
       console.log(error);
     }
   }
+  const productoMasVendido = async (baseUrl) => {
+    let productos = [];
+    try {
+      let response = await fetch(baseUrl + 'producto/masVendido');
+      let json = await response.json();
+      productos = json;
+      console.log(productos);
+      return productos;
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return {
@@ -87,6 +100,8 @@ const ProductoRepository = () => {
     getProductosHabilitadosPorCliente: getProductosHabilitadosPorCliente,
     updateProducto: updateProducto,
     addProducto: addProducto,
+    productoMasVendido:productoMasVendido
+    
   }
 }
 
